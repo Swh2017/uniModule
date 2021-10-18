@@ -1,0 +1,54 @@
+<template>
+	<view class="home_contianer">
+		<scrolltabbar :tabList="tabList" ></scrolltabbar>
+	</view>
+</template>
+
+<script>
+	import scrolltabbar from "@/components/scrollTabbar/index.nvue"
+	export default {
+		data(){
+			return {
+				tabList: [{
+					id: "tab01",
+					name: '最新1',
+					newsid: 0
+				}, {
+					id: "tab02",
+					name: '大公司',
+					newsid: 23
+				}, {
+					id: "tab03",
+					name: '内容',
+					newsid: 223
+				}, {
+					id: "tab04",
+					name: '消费',
+					newsid: 221
+				}, {
+					id: "tab05",
+					name: '娱乐',
+					newsid: 225
+				}, {
+					id: "tab06",
+					name: '区块链',
+					newsid: 208
+				}, {
+					id: "tab07",
+					name: '区块',
+					newsid: 209
+				}, ],
+			}
+		},
+		components:{
+			scrolltabbar
+		},
+		onReady() {
+			console.log('onReady')
+		}
+	}
+</script>
+
+<style>
+
+</style>

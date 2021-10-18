@@ -1,0 +1,32 @@
+<template>
+	<view>
+		
+	</view>
+</template>
+
+<script>
+	export default {
+		props:{
+			isRefresh: {
+				type: Boolean,
+				default: false,
+			},
+			isLoading:{
+				type:: Boolean,
+				default: false,
+			}
+		},
+		data(){
+			return{
+				
+			}
+		},
+		methods:{
+			
+		},
+	}
+</script>
+
+<style>
+
+</style>
