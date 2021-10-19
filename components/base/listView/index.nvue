@@ -1,29 +1,70 @@
 <template>
 	<view>
-		
+		<uni-list ref="list" class="listview" :enableBackToTop="true" :scroll-y="true" @scrolltolower="loadMore()">
+		<!--  <uni-refresh class="refresh" @refresh="onrefresh" @pullingdown="onpullingdown" :display="refreshing ? 'show' : 'hide'">
+		    <div class="refresh-view">
+		      <image class="refresh-icon" :src="refreshIcon" :style="{width: (refreshing || pulling) ? 0: '32px'}" :class="{'refresh-icon-active': refreshFlag}"></image>
+		      <uni-load-more v-if="refreshing" class="loading-icon" status="loading" :contentText="loadingMoreText"></uni-load-more>
+		      <text class="loading-text">{{refreshText}}</text>
+		    </div>
+		  </uni-refresh> -->
+		  <uni-cell v-for="(item, index) in dataList" :key="item.id">
+			<text style="height: 155rpx; background-color: #2C405A; text-align: center; color: #FFFFFF;">{{index}}</text>
+		  </uni-cell>
+		  <uni-cell v-if="isLoading || dataList.length > 4">
+		    <view class="loading-more">
+		      <text class="loading-more-text">{{loadingText}}</text>
+		    </view>
+		  </uni-cell>
+		</uni-list>
+		<!-- <no-data class="no-data" v-if="isNoData" @retry="loadMore"></no-data> -->
 	</view>
 </template>
 
 <script>
+	import uniCell from '@/components/uni-cell.vue'	
+	import uniRefresh from '@/components/uni-refresh.vue'	
+	import uniLoadMore from '@/components/uni-load-more.vue'	
 	export default {
-		props:{
+		props: {
 			isRefresh: {
 				type: Boolean,
 				default: false,
 			},
-			isLoading:{
-				type:: Boolean,
+			isLoadList: {
+				type: Boolean,
 				default: false,
+			},
+			loadingText:{
+				type: String,
+				default: '加载中...'
+			},
+			loadingMoreText:{
+				type: String,
+				default: '加载中...'
 			}
 		},
-		data(){
-			return{
+		data() {
+			return {
+				dataList: [ 0,1,2,3,4,5,6,7,8,9],
+				isNoData: false,
+				refreshing: false,
+				refreshIcon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB5QTFRFcHBw3Nzct7e39vb2ycnJioqK7e3tpqam29vb////D8oK7wAAAAp0Uk5T////////////ALLMLM8AAABxSURBVHja7JVBDoAgDASrjqj//7CJBi90iyYeOHTPMwmFZrHjYyyFYYUy1bwUZqtJIYVxhf1a6u0R7iUvWsCcrEtwJHp8MwMdvh2amHduiZD3rpWId9+BgPd7Cc2LIkPyqvlQvKxKBJ//Qwq/CacAAwDUv0a0YuKhzgAAAABJRU5ErkJggg=="
 				
 			}
 		},
-		methods:{
-			
+		methods: {
+			loadMore(){
+				console.log('加载更多')
+				let list = [11,12,13,14,15,16]
+				this.dataList.push(list)
+			}
 		},
+		components:{
+			uniCell,
+			uniLoadMore,
+			uniLoadMore
+		}
 	}
 </script>
 

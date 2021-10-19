@@ -1,12 +1,17 @@
 <template>
-	<div>
-		
-	</div>
+	<view>
+		<list-view>
+			
+		</list-view>
+	</view>
 </template>
 
 <script>
+	import listView from "@/components/base/listView/index.nvue"
 	export default {
-		
+		components:{
+			listView
+		}
 	}
 </script>
 
