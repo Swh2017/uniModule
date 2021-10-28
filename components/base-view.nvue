@@ -1,0 +1,25 @@
+<template>
+	<view class="base_container">
+		<view>
+			
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		props:{
+			showType:{
+				type: String,
+				default: ''
+			}
+		}
+	}
+</script>
+
+<style>
+	.base_container {
+		flex: 1;
+		position: relative;
+	}
+</style>

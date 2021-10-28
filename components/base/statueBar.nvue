@@ -1,0 +1,45 @@
+<template>
+	<view :style="{height: height ? height : statusBarHeight,color: color}">
+		
+	</view>
+</template>
+
+<script>
+	/**
+	 *  @description  状态栏/针对手机端.
+	 */
+	export default {
+		props:{
+			height: {
+				type: Number,
+				default: 0
+			},
+			color: {
+				type: String,
+				default: '#ffffff'
+			}
+		},
+		data(){
+			return{
+				statusBarHeight: 30,
+			}
+		},
+		created() {
+			let that = this;
+			uni.getSystemInfo({
+				success: (info) => {
+					if(info.statusBarHeight){
+						that.statusBarHeight = info.statusBarHeight;
+					}
+				},
+				fail() {
+					
+				}
+			})
+		}
+	}
+</script>
+
+<style>
+
+</style>

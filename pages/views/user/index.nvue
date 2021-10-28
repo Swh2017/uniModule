@@ -1,0 +1,175 @@
+<template>
+	<view class="container">
+		<view class="user-content">
+			<view class="user-info">
+				<image :src="info.userbg" mode="aspectFill" class="blur" style="height: 590rpx;"></image>
+				<view class="img_blur"></view>
+				<view style="position absolute; height: 146rpx; display: flex; top: 246rpx; left: 60rpx; flex-direction: row;align-items: center;">
+					<image @click="clickLogin" src="/static/errorImage.jpg" style="width: 146rpx;height: 146rpx; border-radius: 175rpx; border: solid 2rpx #ffffff;">
+					</image>
+					<view  @click="clickUserinfo" class="user-introduction">
+						<view style="display: flex; flex-direction: row; align-items: center;">
+							<text style="color: #000000;font-size: 36rpx;line-height: 36rpx;height: 36rpx; font-weight: bold;">{{info.userName}}</text>
+							<image src="/static/template.png" style="margin-left: 18rpx; width: 30rpx; height: 30rpx;"></image>
+						</view>
+						<text style="margin-top: 25rpx; color: #B9B9B9;font-size: 28rpx;line-height: 28rpx;height: 28rpx; ">hello world , thaind tere</text>
+					</view>
+				</view>
+		<!-- 		<image class="user-edit" src="/static/template.png" style="width: 65rpx; height: 65rpx;"></image>
+				<image class="user-set" src="/static/template.png" style="width: 65rpx; height: 65rpx;"></image> -->
+				<view class="user-menu">
+					<view class="user-menu-item">
+						<text class="menu-item-value">666</text>
+						<text class="menu-item-title">动态</text>
+					</view>
+					<view class="user-menu-item">
+						<text class="menu-item-value">555</text>
+						<text class="menu-item-title">关注</text>
+					</view>
+					<view class="user-menu-item">
+						<text class="menu-item-value">9999</text>
+						<text class="menu-item-title">粉丝</text>
+					</view>
+				</view>
+			</view>
+		</view>
+		
+		<view class="user-menu-list">
+			<view></view>
+			<function-item leftIcon="/static/icon/icon_user_order.png" title="我的订单"></function-item>
+			<function-item leftIcon="/static/icon/icon_user_address.png" title="地址管理"></function-item>
+			<function-item leftIcon="/static/icon/icon_user_connect.png" title="联系我们"></function-item>
+			<function-item leftIcon="/static/icon/icon_user_set.png" title="设         置"></function-item>
+			
+			<view class="item-radio-test"></view>
+		</view>
+	</view>
+</template>
+
+<script>
+	import statueBar from "@/components/base/statueBar.nvue"
+	import functionItem from "@/pages/views/user/function-item.nvue"
+	import baseMixins from "@/pages/mixins/baseMixins.js"
+	export default {
+		mixins:[baseMixins],
+		data() {
+			return {
+				info: {
+					userName: 'name',
+					userbg: 'https://ww1.sinaimg.cn/large/0065oQSqly1frepsi3o15j30k80oidkd.jpg'
+				}
+			}
+		},
+		methods: {
+			clickLogin(){
+				this.toLoginView();
+			},
+			clickUserinfo(){
+				this.toView('/pages/views/user/userinfo/index');
+			},
+		},
+		components: {
+			statueBar,functionItem
+		},
+		onReady() {
+
+		},
+	}
+</script>
+
+<style>
+	.container{
+		display: flex;
+		flex: 1;
+		background-color: #FFFFFF;
+	}
+	.blur {
+		position: absolute;
+		height: 100%;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: -1;
+		/* -webkit-filter: blur(5rpx);
+		filter: blur(15rpx) brightness(70%); // 模糊半径和变暗
+		transform: scale(1.2); // 控制边缘是否模糊，小于1的话边缘会模糊 */
+	}
+
+	.img_blur {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: -1;
+		background: rgba(0, 0, 0, .8);
+		opacity: 0.5;
+	}
+
+	.user-content {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.user-info {
+		height: 590rpx;
+		display: flex;
+		position: relative;
+	}
+
+	.user-introduction {
+		margin-left: 36rpx;
+	}
+
+	.user-edit {
+		position: absolute;
+		right: 50;
+		top: 15;
+	}
+
+	.user-set {
+		position: absolute;
+		right: 20;
+		top: 15;
+	}
+
+	.user-menu {
+		position: absolute;
+		flex-direction: row;
+		justify-content: space-between;
+		left: 0;
+		right: 0;
+		bottom: 35rpx;
+	}
+
+	.user-menu-item {
+		flex: 1;
+		height: 175rpx;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.menu-item-value {
+		color: #000000;
+		font-size: 45rpx;
+	}
+
+	.menu-item-title {
+		font-size: 30rpx;
+		color: #B9B9B9;
+		margin-top: 25rpx;
+	}
+
+	.user-menu-list{
+		margin-top: -40rpx;
+		width: 750rpx;
+		background-color: #FFFFFF;
+		flex-direction: column;
+		position: relative;
+		flex: 1;
+		padding: 35rpx 35rpx;
+		border-radius: 40rpx 40rpx 40rpx 40rpx;
+	}
+</style>

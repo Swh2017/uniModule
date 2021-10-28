@@ -1,0 +1,116 @@
+<template>
+	<view class="container">
+		<statue-bar></statue-bar>
+		<view class="login-container">
+			<view style="align-items: center;">
+				<image class="login-logo" style="width: 155rpx;height: 155rpx;" src="/static/errorImage.jpg"></image>
+			</view>
+			<view style="margin-top: 85rpx;  flex-direction: row;" class="input-bg">
+				<image style="width: 55rpx; height: 55rpx;" src="/static/templateHL.png"></image>
+				<input style="flex: 1" class="login-phone" placeholder="手机号" />
+				<image style="width: 55rpx; height: 55rpx;" src="/static/templateHL.png"></image>
+			</view>
+			<view style="margin-top: 85rpx;  flex-direction: row;align-items: center;" >
+				<view class="input-bg" style="flex: 1;">
+					<image style="width: 55rpx; height: 55rpx;" src="/static/templateHL.png"></image>
+					<input style="flex: 1;" placeholder="验证码" />
+				</view>
+				<verify-item style="margin-left: 35rpx; width: 255rpx; border-radius: 35rpx; height: 85rpx; justify-content: center; background-color: #DD524D;"></verify-item>
+				<!-- <view style="margin-left: 35rpx;" >获取验证码</view> -->
+			</view>
+			<text class="login-button" style="margin-top: 85rpx;">登 录</text>
+			<view class="login-info"></view>
+		</view>
+		<view class="other-container">
+			<view style="display: flex;flex-direction: row;justify-content: center; align-items: center;">
+				<view style="width: 155rpx" class="line"></view>
+				<text>qita</text>
+				<view style="width: 155rpx" class="line"></view>
+			</view>
+			<view style="flex-direction: row; justify-content: center; margin-top: 55rpx;">
+				<view class="item_center">
+					<image class="login-logo" style="width: 75rpx;height: 75rpx;" src="/static/errorImage.jpg"></image>
+					<text class="other-text">微信</text>
+				</view>
+				<view class="item_center" style="margin-left: 135rpx;">
+					<image class="login-logo" style="width: 75rpx;height: 75rpx;" src="/static/errorImage.jpg"></image>
+					<text class="other-text">微信</text>
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	import statueBar from '@/components/base/statueBar.nvue'
+	import verifyItem from '@/pages/views/login/verify-item.nvue'
+	export default {
+		data(){
+			return{
+				
+			}
+		},
+		methods:{
+			
+		},
+		components:{
+			statueBar,verifyItem
+		}
+	}
+</script>
+
+<style>
+	.container{
+		flex: 1;
+		display: flex;
+		position: relative;
+	}
+	.login-container{
+		margin-top: 235rpx;
+		padding-left: 35rpx;
+		padding-right: 35rpx;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+	.input-bg{
+		background-color: #cccccc;
+		border-radius: 15rpx;
+		padding-left: 15rpx;
+		padding-right: 15rpx;
+		height: 85rpx;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		
+	}
+	.login-button{
+		color: #FFFFFF;
+		font-size: 35rpx;
+		border-radius: 85rpx;
+		height: 80rpx;
+		line-height: 80rpx;
+		text-align: center;
+		background-color: #CCCCCC;
+	}
+	
+	.other-container{
+		position: absolute;
+		bottom: 135rpx;
+		left: 0;
+		right: 0;
+		align-items: center;
+	}
+	.item_center{
+		align-items: center;
+	}
+	.other-text{
+		color: #CCCCCC;
+		margin-top: 15rpx;
+		font-size: 33rpx;
+	}
+	.line{
+		height: 1px;
+		background-color: #CCCCCC;
+	}
+</style>

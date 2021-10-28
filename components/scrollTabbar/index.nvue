@@ -37,8 +37,17 @@
 					return [{
 						id: "tab01",
 						name: '最新',
-						newsid: 0
-					}]
+						newsid: 3
+					},{
+						id: "tab02",
+						name: '最新2',
+						newsid: 2
+					},{
+						id: "tab03",
+						name: '最新3',
+						newsid: 1
+					},
+					]
 				}
 			}
 		},
@@ -182,7 +191,6 @@
 		width: 750rpx;
 		height: 42px;
 		flex-direction: row;
-		white-space: nowrap;
 	}
 
 	/* #ifndef APP-NVUE */

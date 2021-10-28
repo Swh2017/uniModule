@@ -1,0 +1,55 @@
+<template>
+	<list-view ref="listview" :openRefresh="openRefresh" @loadMore="loadMore" @refresh="refresh">
+		<my-cell v-for="(item, index) in tableList" :key="item.id">
+			<msg-item></msg-item>
+		</my-cell>
+	</list-view>
+</template>
+
+<script>
+	import listView from "@/components/listview/index.nvue"
+	import myCell from '@/components/base/my-cell.vue';
+	import msgItem from '@/pages/views/home/msg-item.nvue'
+	export default {
+		data(){
+			return{
+				tableList: [1,2,3,4,5,6,7,8,9,10],
+				openRefresh: false,
+			}
+		},
+		methods:{
+			loadMore(e){
+				console.log('discover -> loadmore')
+				this.loadData()
+			},
+			refresh(){
+				console.log('discover -> refresh')
+				this.loadData(true);
+			},
+			loadData(refresh) {
+				let datalist = [11,12, 13, 14, 15, 16, 17, 18, 19, 20]
+				let orginData = [1,2,3,4,5,6,7,8,9,10];
+				setTimeout(() => {
+					if (refresh) {
+						this.tableList = orginData
+						this.$refs.listview.refreshFinish();
+					} else {
+						this.tableList = this.tableList.concat(datalist);
+						this.$refs.listview.loadMoreFinish();
+					}
+				}, 1500)
+			},
+		},
+		components:{
+			listView,myCell,msgItem
+		},
+		onReady() {
+			
+		},
+		
+	}
+</script>
+
+<style>
+
+</style>

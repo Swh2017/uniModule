@@ -1,0 +1,131 @@
+<template>
+	<view class="container">
+		<!-- <statue-bar></statue-bar> -->
+		<!-- <view class="discover-header" style="margin-top: 25rpx;">
+			<view class="discover-menu-list" style="padding-left: 15rpx; padding-right: 15rpx;">
+				<view class="discover-menu">
+					<image class="menu-icon" mode="widthFix" src="/static/template.png"></image>
+					<text class="menu-title">福利集市</text>
+				</view>
+				<view class="discover-menu">
+					<image class="menu-icon" mode="widthFix" src="/static/template.png"></image>
+					<text class="menu-title">我蹲的娃</text>
+				</view>
+				<view class="discover-menu">
+					<image class="menu-icon" mode="widthFix" src="/static/template.png"></image>
+					<text class="menu-title">产房订单</text>
+				</view>
+			</view>
+			<view class="discover-application">
+			</view>
+		</view> -->
+		<!-- <text>围观产房</text> -->
+		<!-- <list-item></list-item> -->
+		<list-view ref="listview" class="list-content" @loadMore="loadMore" @refresh="refresh">
+			<my-cell v-for="(item, index) in tableList" :key="item.id">
+				<text style="height: 155rpx; background-color: #333333; color: #FFFFFF; text-align: center;  ">{{item}}</text>
+			</my-cell>
+		</list-view>
+	</view>
+</template>
+
+<script>
+	import myCell from '@/components/base/my-cell.vue';
+	import statueBar from "@/components/base/statueBar.nvue"
+	import listView from "@/components/listview/index.nvue"
+	import listItem from "@/pages/views/discover/list-item.nvue"
+	export default {
+		data(){
+			return{
+				tableList: [1,2,3,4,5,6,7,8,9,10],
+			}
+		},
+		methods:{
+			loadMore(e){
+				console.log('discover -> loadmore')
+				this.loadData()
+			},
+			refresh(){
+				console.log('discover -> refresh')
+				this.loadData(true);
+			},
+			loadData(refresh) {
+				let datalist = [11,12, 13, 14, 15, 16, 17, 18, 19, 20]
+				let orginData = [1,2,3,4,5,6,7,8,9,10];
+				setTimeout(() => {
+					if (refresh) {
+						this.tableList = orginData
+						this.$refs.listview.refreshFinish();
+					} else {
+						this.tableList = this.tableList.concat(datalist);
+						this.$refs.listview.loadMoreFinish();
+					}
+				}, 1500)
+			},
+		},
+		components:{
+			statueBar,listView,myCell,listItem
+		},
+		onReady() {
+			
+		},
+	}
+</script>
+<style>
+	.container{
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+		background-color: #ffffff;
+		/* #ifdef MP-ALIPAY || MP-BAIDU */
+		height: 100vh;
+		/* #endif */
+		
+	}
+	
+	.discover-header{
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.discover-menu-list{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.discover-menu{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		height: 125rpx;
+		width: 225rpx;
+		background-color: #F2F2F2;
+		border-radius: 15rpx;
+	}
+	
+	.menu-icon{
+		width: 55rpx;
+		height: 55rpx;
+	}
+	.menu-title{
+		font-size: 22rpx;
+	}
+	
+	.discover-application{
+		height: 255rpx;
+		background-color: #F2F2F2;
+		border-radius: 15rpx;
+		margin: 20rpx 15rpx;
+	}
+	
+	.list-content{
+		display: flex;
+		position: relative;
+		flex: 1;
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+</style>

@@ -1,0 +1,62 @@
+<template>
+	<view @click="clickItem">
+		<slot>
+			<text style="font-size: 28rpx; color: #FFFFFF; text-align: center;">{{showContent ? showContent :origintext}}</text>
+		</slot>
+	</view>
+</template>
+
+<script>
+	export default {
+		props: {
+			origintext: {
+				type: String,
+				default: '获取验证码'
+			},
+			flextext: {
+				type: String,
+				default: '还有'
+			}
+		},
+		data() {
+			return {
+				isWaitPhone: true,
+				showContent: '',
+				maxNumber: 20,
+				number: 0,
+				timer: null,
+			}
+		},
+		methods: {
+			clickItem() {
+				if (this.isWaitPhone) {
+					this.isWaitPhone = false;
+					this.requestPhone()
+				} else {
+					
+				}
+			},
+			requestPhone(){
+				this.number = this.maxNumber;
+				if(this.timer){
+					clearInterval(this.timer);
+				}
+				this.showContent = this.number + 's';
+			 	this.timer = setInterval(()=> {
+					if(this.number > 0){
+						this.number =  this.number - 1;;
+						this.showContent = this.number + 's';
+					}else{
+						this.showContent = '';
+						this.isWaitPhone = true;
+						clearInterval(this.timer);
+					}
+				},1000)
+			},
+		}
+	}
+</script>
+
+<style>
+
+</style>

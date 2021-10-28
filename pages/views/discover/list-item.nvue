@@ -1,0 +1,64 @@
+<template>
+	<view class="table-item">
+		<image style="width: 300rpx; height: 320rpx;" src="/static/errorImage.jpg"></image>
+		<view class="item-statue">打样中</view>
+		<text class="item-name">这是娃娃名</text>
+		<view class="item-foot">
+			<view class="item-userinfo">
+				<image class="user-avatar" src="/static/template.png"></image>
+				<text class="user-name">用户名称XXX</text>
+			</view>
+			<text>蹲TA</text>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+
+	}
+</script>
+
+<style>
+	.table-item {
+		display: flex;
+		flex-direction: column;
+		width: 300rpx;
+		position: relative;
+		padding: 25rpx 0;
+	}
+
+	.item-statue {
+		position: absolute;
+		left: 25rpx;
+		top: 25rpx;
+	}
+
+	.item-name {
+		padding: 15rpx 0rpx;
+		font-size: 35rpx;
+	}
+
+	.item-foot {
+		display: flex;
+		flex-direction: row;
+	}
+
+	.item-userinfo {
+		display: flex;
+		flex-direction: row;
+		flex: 1;
+		align-items: center;
+	}
+
+	.user-name {
+		color: #000000;
+		font-size: 22rpx;
+	}
+
+	.user-avatar {
+		width: 25rpx;
+		height: 25rpx;
+		border-radius: 25rpx;
+	}
+</style>

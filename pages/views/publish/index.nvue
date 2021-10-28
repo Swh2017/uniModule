@@ -1,0 +1,61 @@
+<template>
+	<view class="container">
+		<statue-bar></statue-bar>
+		<toolbar>
+			<text style="position: absolute; left: 35rpx;">取消</text>
+		</toolbar>
+		<textarea confirm-type="search" auto-blur="true" placeholder-style="color:#000000;	" 
+		style="background-color: #0000FF; color:#000000 ;height: 350rpx; padding-left: 30rpx; line-height: 0; padding-right: 30rpx;" placeholder="这一刻的想法">
+		</textarea>
+		<view>
+			<template v-if="filePath.length > 0">
+			</template>
+			<image @click="clickOpenFile" style="width: 155rpx; height: 155rpx;" src="/static/errorImage.jpg"></image>
+		</view>
+		
+		<view>
+			<view>
+				<text>#</text>
+				<text>话题</text>
+				<view></view>
+				<text>#娃娃</text>
+				<image style="width: 55rpx; height: 55rpx;" src="/static/template.png"></image>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	import statueBar from "@/components/base/statueBar.nvue"
+	import toolbar from "@/components/toolbar.nvue"
+	export default {
+		components: {
+			statueBar,toolbar
+		},
+		data() {
+			return {
+				filePath: []
+			}
+		},
+		methods:{
+			clickOpenFile(){
+				uni.chooseFile({
+					success: (data) => {
+						
+					},
+					fail: (err) => {
+						
+					}
+				})
+			}
+		}
+	}
+</script>
+
+<style>
+	.container {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+</style>

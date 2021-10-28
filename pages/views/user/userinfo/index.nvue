@@ -1,0 +1,40 @@
+<template>
+	<view class="container">
+		<my-image :src="userbg" height="590rpx" width="750rpx"></my-image>
+		<view class="content">
+			<scroller show-scrollbar='false'scroll-direction="horizontal">
+			</scroller>
+		</view>
+		
+	</view>
+</template>
+
+<script>
+	import myImage from '@/components/my-image.vue'
+	import msgList from '@/pages/views/home/msg-list.nvue'
+	export default {
+		components:{
+			myImage,msgList
+		},
+		data(){
+			return{
+				userbg: 'https://ww1.sinaimg.cn/large/0065oQSqly1frepsi3o15j30k80oidkd.jpg',
+			}
+		}
+	}
+</script>
+
+<style>
+	.container{
+		flex: 1;
+		flex-direction: column;
+		position: relative;
+		
+	}
+	.content{
+		display: flex;
+		position: relative;
+		flex: 1;
+		background-color: #0000FF;
+	}
+</style>

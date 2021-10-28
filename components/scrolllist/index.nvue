@@ -1,0 +1,222 @@
+<template>
+	<scroller class="scroller" @loadmore="loadMore" loadmoreoffset="15" :show-scrollbar="showScrollBar"
+		:scroll-y="scrollY">
+		<my-refresh v-if="openRefresh" class="refresh" @refresh="onrefresh" @pullingdown="onpullingdown"
+			:display="refreshing ? 'show' : 'hide'">
+			<div class="refresh-view">
+				<image class="refresh-icon" :src="refreshIcon" :style="{width: (refreshing || pulling) ? 0: '32px'}"
+					:class="{'refresh-icon-active': refreshFlag}"></image>
+				<my-load-more v-if="refreshing" class="loading-icon" status="loading" :contentText="loadingMoreText">
+				</my-load-more>
+				<text class="loading-text">{{refreshText}}</text>
+			</div>
+		</my-refresh>
+		<slot>
+		</slot>
+		<view v-if="isLoading">
+			<view class="loading-more">
+				<text class="loading-more-text">{{loadingText}}</text>
+			</view>
+		</view>
+	</scroller>
+</template>
+
+<script>
+	import myRefresh from '@/components/base/my-refresh.vue';
+	import myLoadMore from '@/components/base/my-load-more.vue';
+	import myCell from '@/components/base/my-cell.vue';
+
+	export default {
+		components: {
+			myRefresh,
+			myLoadMore,
+			myCell
+		},
+		props: {
+			showScrollBar:{
+				type: Boolean,
+				default: true,
+			},
+			enableBackToTop: {
+				type: [Boolean, String],
+				default: false
+			},
+			scrollY: {
+				type: [Boolean, String],
+				default: true
+			},
+			openLoading: {
+				type: Boolean,
+				default: true
+			},
+			openRefresh: {
+				type: Boolean,
+				default: true
+			}
+		},
+		methods: {
+			loadMore(e) {
+				console.log('get loadMore info')
+				if (this.isLoading) {
+					return;
+				}
+				this.isLoading = true;
+				this.isNoData = false;
+				this.$emit('loadMore', e)
+			},
+			refresh() {
+				this.$emit('refresh')
+			},
+			loadMoreFinish() {
+				this.isLoading = false;
+			},
+			refreshFinish(refresh) {
+				this.refreshing = false;
+				this.refreshFlag = false;
+				this.refreshText = "已刷新";
+				this.pulling = false;
+			},
+			onpullingdown() {
+				if (this.refreshing) {
+					return;
+				}
+				this.pulling = false;
+				if (Math.abs(e.pullingDistance) > Math.abs(e.viewHeight)) {
+					this.refreshFlag = true;
+					this.refreshText = "释放立即刷新";
+				} else {
+					this.refreshFlag = false;
+					this.refreshText = "下拉可以刷新";
+				}
+			},
+			refreshData() {
+				if (this.isLoading) {
+					return;
+				}
+				this.pulling = true;
+				this.refreshing = true;
+				this.refreshText = "正在刷新...";
+				this.refresh();
+			},
+			onrefresh(e) {
+				this.refreshData();
+				// #ifdef APP-NVUE
+				this.$refs.list.resetLoadmore();
+				// #endif
+			},
+			onpullingdown(e) {
+				if (this.refreshing) {
+					return;
+				}
+				this.pulling = false;
+				if (Math.abs(e.pullingDistance) > Math.abs(e.viewHeight)) {
+					this.refreshFlag = true;
+					this.refreshText = "释放立即刷新";
+				} else {
+					this.refreshFlag = false;
+					this.refreshText = "下拉可以刷新";
+				}
+			},
+		},
+		data() {
+			return {
+				dataList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+				refreshing: false,
+				refreshFlag: false,
+				refreshText: "",
+				pulling: false,
+				isNoData: false,
+				loadingText: '加载中...',
+				isLoading: false,
+				loadingMoreText: {
+					contentdown: '',
+					contentrefresh: '',
+					contentnomore: ''
+				},
+				refreshIcon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB5QTFRFcHBw3Nzct7e39vb2ycnJioqK7e3tpqam29vb////D8oK7wAAAAp0Uk5T////////////ALLMLM8AAABxSURBVHja7JVBDoAgDASrjqj//7CJBi90iyYeOHTPMwmFZrHjYyyFYYUy1bwUZqtJIYVxhf1a6u0R7iUvWsCcrEtwJHp8MwMdvh2amHduiZD3rpWId9+BgPd7Cc2LIkPyqvlQvKxKBJ//Qwq/CacAAwDUv0a0YuKhzgAAAABJRU5ErkJggg=="
+			}
+		},
+	}
+</script>
+
+<style>
+	.scroller {
+		flex: 1;
+		flex-direction: column;
+		/* position: absolute; */
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+	}
+
+	.list-view {
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		/* #ifndef APP-NVUE */
+		display: flex;
+		flex-direction: column;
+		/* #endif */
+		/* #ifndef MP-ALIPAY */
+		flex-direction: column;
+		/* #endif */
+	}
+
+	.refresh {
+		justify-content: center;
+	}
+
+	.refresh-view {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		width: 750rpx;
+		height: 64px;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.refresh-icon {
+		width: 32px;
+		height: 32px;
+		transition-duration: .5s;
+		transition-property: transform;
+		transform: rotate(0deg);
+		transform-origin: 15px 15px;
+	}
+
+	.refresh-icon-active {
+		transform: rotate(180deg);
+	}
+
+	.loading-icon {
+		width: 28px;
+		height: 28px;
+		margin-right: 5px;
+		color: gray;
+	}
+
+	.loading-text {
+		margin-left: 2px;
+		font-size: 16px;
+		color: #999999;
+	}
+
+	.loading-more {
+		align-items: center;
+		justify-content: center;
+		padding-top: 14px;
+		padding-bottom: 14px;
+		text-align: center;
+	}
+
+	.loading-more-text {
+		font-size: 28upx;
+		color: #999;
+	}
+</style>

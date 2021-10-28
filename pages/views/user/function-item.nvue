@@ -1,0 +1,46 @@
+<template>
+	<view :style="{height: height,backgroundColor: background}" style="justify-content: center; position: relative;">
+		<slot name="lefticon">
+			<image :src="leftIcon" style="width: 50rpx; height: 50rpx; position: absolute; left: 42rpx;"></image>
+		</slot>
+		
+		<slot name="title">
+			<text style="position: absolute; left: 108rpx; font-size: 30rpx;">{{title}}</text>
+		</slot>
+		
+		<slot name="righticon">
+			<image src="/static/icon/icon_user_more.png" style="width: 30rpx; height: 30rpx; position: absolute; right: 41rpx;"></image>
+		</slot>
+	</view>
+</template>
+
+<script>
+	export default {
+		props:{
+			height: {
+				type: String,
+				default: '110rpx'
+			},
+			background:{
+				type: String,
+				default: '#ffffff'
+			},
+			leftIcon:{
+				type: String,
+				default: ''
+			},
+			title:{
+				type: String,
+				default: '标识内容'
+			},
+			rightIcon:{
+				type: String,
+				default: ''
+			},
+		}
+	}
+</script>
+
+<style>
+
+</style>

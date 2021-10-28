@@ -1,0 +1,33 @@
+<template>
+	<view :style="{height: height}" style="background-color: #666666; position: relative; display: flex;flex-direction: row; align-items: center; justify-content: center;">
+		<slot>
+			<image @click="clickBack" style="position: absolute; left: 25rpx; width: 55rpx; height: 55rpx;" src="/static/template.png"></image>
+			<text>{{title}}</text>
+			<view></view>
+		</slot>
+	</view>
+</template>
+
+<script>
+	export default {
+		props:{
+			height: {
+				type: String,
+				default: '95rpx'
+			},
+			title:{
+				type:String,
+				default: '标题'
+			}
+		},
+		methods:{
+			clickBack(){
+				this.$emit('clickBack')
+			}
+		}
+	}
+</script>
+
+<style>
+
+</style>

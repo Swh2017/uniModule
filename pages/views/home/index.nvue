@@ -1,54 +1,133 @@
 <template>
-	<view class="home_contianer">
-		<scrolltabbar :tabList="tabList" ></scrolltabbar>
+	<view class="container">
+		<statue-bar></statue-bar>
+		<view class="tab-bar">
+			<view class="search-bar" @click="clickSearch">
+				<image mode="widthFix" style="width: 36rpx; height: 36rpx;" src="/static/icon/icon_home_search.png">
+				</image>
+				<text class="search-title">{{searchTitle}}</text>
+			</view>
+			<image @click="clickPublish" mode="widthFix" style="width: 50rpx; height: 50rpx; margin-left: 19rpx;"
+				src="/static/icon/icon_home_publish.png"></image>
+		</view>
+		<view class="content">
+			<scroll-menu @clickItem="clickTab" :tabList="tabList"></scroll-menu>
+			<!-- <msg-item></msg-item> -->
+			<view class="swiper-item">
+				<msg-list></msg-list>
+			</view>
+			
+		</view>
 	</view>
 </template>
 
 <script>
-	import scrolltabbar from "@/components/scrollTabbar/index.nvue"
+	import statueBar from "@/components/base/statueBar.nvue"
+	import msgItem from "@/pages/views/home/msg-item.nvue"
+	import scrollMenu from "@/pages/views/home/scroll-menu.nvue"
+	import msgList from '@/pages/views/home/msg-list.nvue'
 	export default {
-		data(){
+		data() {
 			return {
+				searchTitle: "人口普查正式开始",
 				tabList: [{
-					id: "tab01",
-					name: '最新1',
-					newsid: 0
+					name: '关注',
+					newsid: 1
 				}, {
-					id: "tab02",
-					name: '大公司',
-					newsid: 23
+					name: '推荐',
+					newsid: 2
 				}, {
-					id: "tab03",
-					name: '内容',
-					newsid: 223
+					name: '上新',
+					newsid: 3
 				}, {
-					id: "tab04",
-					name: '消费',
-					newsid: 221
+					name: '人口普查',
+					newsid: 4
 				}, {
-					id: "tab05",
-					name: '娱乐',
-					newsid: 225
+					name: '测试',
+					newsid: 5
 				}, {
-					id: "tab06",
-					name: '区块链',
-					newsid: 208
+					name: '转单',
+					newsid: 6
 				}, {
-					id: "tab07",
-					name: '区块',
-					newsid: 209
+					name: '娃娃',
+					newsid: 7
 				}, ],
 			}
 		},
-		components:{
-			scrolltabbar
+		methods: {
+			clickTab(index) {
+				console.log('home-click-tab-item,', index);
+			},
+			clickSearch(){
+				uni.navigateTo({
+					url: '/pages/views/search/index',
+					fail: (err) => {
+						console.log('err : ',err)
+					}
+				})
+			},
+			clickPublish(){
+				uni.navigateTo({
+					url: '/pages/views/publish/index',
+					fail: (err) => {
+						console.log('err : ',err)
+					}
+				})
+			}
+		},
+		components: {
+			statueBar,
+			msgItem,
+			scrollMenu,
+			msgList
 		},
 		onReady() {
-			console.log('onReady')
-		}
+
+		},
 	}
 </script>
 
 <style>
+	.container {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+	}
+
+	.tab-bar {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		padding: 0 30rpx;
+		height: 100rpx;
+	}
+
+	.search-bar {
+		height: 60rpx;
+		border-radius: 30rpx;
+		background-color: #F1F1F1;
+		flex-direction: row;
+		align-items: center;
+		padding: 0 14rpx;
+		flex: 1;
+	}
+
+	.search-title {
+		color: #CCCCCC;
+		font-size: 28rpx;
+		margin-left: 17rpx;
+	}
+	
+
+	.content {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.swiper-item {
+	  flex: 1;
+	  flex-direction: column;
+	}
 
 </style>

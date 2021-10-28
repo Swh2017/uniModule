@@ -14,4 +14,8 @@
 
 <style>
 	/*每个页面公共css */
+	/* #ifndef APP-PLUS-NVUE */
+	page{
+		background-color: #FFFFFF;
+	}
 </style>

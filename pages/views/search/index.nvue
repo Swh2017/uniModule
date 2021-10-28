@@ -1,0 +1,89 @@
+<template>
+	<view class="container">
+		<statue-bar></statue-bar>
+		<toolbar></toolbar>
+		<view class="search-bar">
+			<view class="search-input">
+				<image style="width: 55rpx;height: 55rpx;" src="/static/template.png"></image>
+				<input type="text" v-model="params.value" placeholder-style="color:#FFFFFF" style="color: #FFFFFF; flex: 1; margin-left: 25rpx; "  placeholder="人口普查" />
+			</view>
+			<text style="margin-left: 25rpx;">搜索</text>
+		</view>
+		
+		<view class="search_tag_list">
+			<text class="search_tag_title">历史记录</text>
+			<view style="display: flex; flex-direction: row; flex-wrap: wrap;">
+				<text class="search-tag">娃娃</text>
+			</view>
+		</view>
+		
+		<view class="search_tag_list">
+			<text class="search_tag_title">热门搜索</text>
+			<view style="display: flex; flex-direction: row; flex-wrap: wrap;">
+				<text class="search-tag">娃娃</text>
+			</view>
+		</view>
+		
+	</view>
+</template>
+
+<script>
+	import statueBar from "@/components/base/statueBar.nvue"
+	import toolbar from "@/components/toolbar.nvue"
+	
+	export default {
+		data(){
+			return{
+				params:{
+					value: '',
+				}
+			}
+		},
+		components:{
+			statueBar,toolbar
+			
+		}
+	}
+</script>
+
+<style>
+	.search-bar{
+		height: 88rpx;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		padding-left: 30rpx;
+		padding-right: 30rpx;
+	}
+	
+	.search-input{
+		flex: 1;
+		height: 65rpx;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		background-color: #888888;
+		border-radius: 25rpx;
+		padding-left: 15rpx;
+	}
+	
+	.search_tag_list{
+		display: flex;
+		flex-direction: column;
+		padding-left: 30rpx;
+		padding-right: 30rpx;
+	}
+	
+	.search_tag_title{
+		color: #000000;
+		font-size: 30rpx;
+		line-height: 55rpx;
+		height: 55rpx;
+	}
+	
+	.search-tag{
+		background-color: #CCCCCC;
+		border-radius: 25rpx;
+		padding: 13rpx 33rpx;
+	}
+</style>

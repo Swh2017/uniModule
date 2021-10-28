@@ -1,15 +1,76 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/views/next/index",
+			"path": "pages/views/home/index",
 			"style": {
-				"navigationBarTitleText": "次页"
+				"navigationBarTitleText": "首页",
+				"app-plus":{
+					"titleNView": false
+				}
 			}
 		},
 		{
-			"path": "pages/views/home/index",
+			"path": "pages/views/discover/index",
 			"style": {
-				"navigationBarTitleText": "主页"
+				"navigationBarTitleText": "这里很酷"
+				
+			}
+		},
+		{
+			"path": "pages/views/message/index",
+			"style": {
+				"navigationBarTitleText": "消息"
+			}
+		},
+		{
+			"path": "pages/views/game/index",
+			"style": {
+				"navigationBarTitleText": "星球"
+			}
+		},
+		{
+			"path": "pages/views/user/index",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"app-plus":{
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/views/search/index",
+			"style": {
+				"navigationBarTitleText": "搜索",
+				"app-plus":{
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/views/publish/index",
+			"style": {
+				"navigationBarTitleText": "发布",
+				"app-plus":{
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/views/login/index",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"app-plus":{
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/views/user/userinfo/index",
+			"style": {
+				"navigationBarTitleText": "他人",
+				"app-plus":{
+					"titleNView": false
+				}
 			}
 		},
 		{
@@ -23,6 +84,43 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#FFFFFF"
+	},
+	"tabBar": {
+		"color": "#999999",
+		"selectedColor": "#41A1F7",
+		"borderStyle": "#DDDDDD",
+		"backgroundColor": "#FBFBFB",
+		"list": [{
+				"pagePath": "pages/views/home/index",
+				"iconPath": "static/template.png",
+				"selectedIconPath": "static/templateHL.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/views/discover/index",
+				"iconPath": "static/template.png",
+				"selectedIconPath": "static/templateHL.png",
+				"text": "发现"
+			},
+			{
+				"pagePath": "pages/views/message/index",
+				"iconPath": "static/template.png",
+				"selectedIconPath": "static/templateHL.png",
+				"text": "消息"
+			},
+			{
+				"pagePath": "pages/views/game/index",
+				"iconPath": "static/template.png",
+				"selectedIconPath": "static/templateHL.png",
+				"text": "星球"
+			},
+			{
+				"pagePath": "pages/views/user/index",
+				"iconPath": "static/template.png",
+				"selectedIconPath": "static/templateHL.png",
+				"text": "我的"
+			}
+		]
 	}
 }
